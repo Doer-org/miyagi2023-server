@@ -10,8 +10,8 @@ import (
 	"syscall"
 	"time"
 
-	"github.com/mahiro72/go-api-template/pkg/adapter/http/router"
-	"github.com/mahiro72/go-api-template/pkg/infra/registry"
+	"github.com/Doer-org/miyagi2023-server/pkg/adapter/http/router"
+	"github.com/Doer-org/miyagi2023-server/pkg/infra/registry"
 )
 
 func main() {

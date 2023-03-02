@@ -3,7 +3,7 @@ package usecase
 import (
 	"context"
 
-	"github.com/mahiro72/go-api-template/pkg/domain/model"
+	"github.com/Doer-org/miyagi2023-server/pkg/domain/model"
 )
 
 type User interface {
@@ -12,15 +12,24 @@ type User interface {
 }
 
 type UserGetInput struct {
-	ID int
+	ID string
 }
+
 type UserGetOutput struct {
 	User *model.User
 }
 
 type UserCreateInput struct {
-	Name string
+	ID         string
+	Name       string
+	Age        uint
+	Gender     string
+	Birthday   string
+	Address    string
+	ProfilIMG  string
+	Prefecture string
 }
+
 type UserCreateOutput struct {
 	User *model.User
 }

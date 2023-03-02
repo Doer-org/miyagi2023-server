@@ -5,9 +5,9 @@ import (
 
 	"github.com/go-chi/chi"
 
-	"github.com/mahiro72/go-api-template/pkg/adapter/http/handler"
-	"github.com/mahiro72/go-api-template/pkg/adapter/http/middleware"
-	"github.com/mahiro72/go-api-template/pkg/infra/registry"
+	"github.com/Doer-org/miyagi2023-server/pkg/adapter/http/handler"
+	"github.com/Doer-org/miyagi2023-server/pkg/adapter/http/middleware"
+	"github.com/Doer-org/miyagi2023-server/pkg/infra/registry"
 )
 
 func New(repository *registry.Repository) http.Handler {

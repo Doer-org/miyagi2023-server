@@ -2,11 +2,10 @@ package interactor
 
 import (
 	"context"
-	"fmt"
 
-	"github.com/mahiro72/go-api-template/pkg/domain/model"
-	"github.com/mahiro72/go-api-template/pkg/domain/repository"
-	"github.com/mahiro72/go-api-template/pkg/usecase"
+	"github.com/Doer-org/miyagi2023-server/pkg/domain/repository"
+	"github.com/Doer-org/miyagi2023-server/pkg/interactor/mock"
+	"github.com/Doer-org/miyagi2023-server/pkg/usecase"
 )
 
 type User struct {
@@ -18,38 +17,9 @@ func NewUser(repository repository.User) *User {
 }
 
 func (uc *User) Get(ctx context.Context, in *usecase.UserGetInput) (*usecase.UserGetOutput, error) {
-	if in.ID == 0 {
-		return nil, fmt.Errorf("id is invalid")
-	}
-
-	user, err := uc.repositroy.Get(ctx, in.ID)
-	if err != nil {
-		return nil, err
-	}
-
-	return &usecase.UserGetOutput{
-		User: user,
-	}, nil
+	return mock.NewUserGetOutput(), nil
 }
 
 func (uc *User) Create(ctx context.Context, in *usecase.UserCreateInput) (*usecase.UserCreateOutput, error) {
-	if in.Name == "" {
-		return nil, fmt.Errorf("name is empty")
-	}
-	if len(in.Name) > 100 {
-		return nil, fmt.Errorf("name must be 100 characters or less in length")
-	}
-
-	u := &model.User{
-		Name: in.Name,
-	}
-
-	user, err := uc.repositroy.Create(ctx, u)
-	if err != nil {
-		return nil, err
-	}
-
-	return &usecase.UserCreateOutput{
-		User: user,
-	}, nil
+	return mock.NewUserCreateOutput(), nil
 }
