@@ -10,7 +10,7 @@ RUN go mod download
 
 COPY . .
 
-RUN go build -o /server ./cmd
+RUN go build -o /server ./cmd/api
 
 ## Deploy
 FROM gcr.io/distroless/base-debian10
