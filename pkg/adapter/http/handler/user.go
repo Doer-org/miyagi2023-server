@@ -24,6 +24,7 @@ func NewUser(r *registry.Repository) *User {
 	return &User{usecase: usecase}
 }
 
+// GET /users/{id}
 func (h *User) Get(w http.ResponseWriter, r *http.Request) {
 	idParam := chi.URLParam(r, "id")
 	if idParam == "" {
@@ -41,10 +42,11 @@ func (h *User) Get(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	view := newUserGetResponse(out.User)
+	view := newUserDefaultResponse(out.User)
 	response.New(w, view)
 }
 
+// POST /users
 func (h *User) Create(w http.ResponseWriter, r *http.Request) {
 	if r.ContentLength == 0 {
 		response.BadRequestErr(w, fmt.Errorf("error: content length is 0"))
@@ -74,7 +76,7 @@ func (h *User) Create(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	view := newUserCreateResponse(out.User)
+	view := newUserDefaultResponse(out.User)
 	response.New(w, view)
 }
 
@@ -89,7 +91,7 @@ type userCreateRequest struct {
 	Prefecture string `json:"prefecture"`
 }
 
-type userCreateResponse struct {
+type userDefaultResponse struct {
 	ID         string `json:"id"`
 	Name       string `json:"name"`
 	Age        uint   `json:"age"`
@@ -101,35 +103,9 @@ type userCreateResponse struct {
 	CreatedAt  string `json:"created_at"`
 }
 
-func newUserCreateResponse(user *model.User) *userCreateResponse {
-	return &userCreateResponse{
-		ID:         user.ID,
-		Name:       user.Name,
-		Age:        user.Age,
-		Gender:     user.Gender.String(),
-		Birthday:   user.Birthday.String(),
-		Address:    user.Address,
-		ProfilIMG:  user.ProfilIMG,
-		Prefecture: user.Prefecture.String(),
-		CreatedAt:  user.CreatedAt.String(),
-	}
-}
-
-type userGetResponse struct {
-	ID         string `json:"id"`
-	Name       string `json:"name"`
-	Age        uint   `json:"age"`
-	Gender     string `json:"gender"`
-	Birthday   string `json:"birthday"`
-	Address    string `json:"address"`
-	ProfilIMG  string `json:"profile_img"`
-	Prefecture string `json:"prefecture"`
-	CreatedAt  string `json:"created_at"`
-}
-
-func newUserGetResponse(user *model.User) *userGetResponse {
-	return &userGetResponse{
-		ID:         user.ID,
+func newUserDefaultResponse(user *model.User) *userDefaultResponse {
+	return &userDefaultResponse{
+		ID:         user.ID.String(),
 		Name:       user.Name,
 		Age:        user.Age,
 		Gender:     user.Gender.String(),
