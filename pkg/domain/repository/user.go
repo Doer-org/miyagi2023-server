@@ -7,6 +7,6 @@ import (
 )
 
 type User interface {
-	Get(context.Context, int) (*model.User, error)
+	Get(context.Context, string) (*model.User, error)
 	Create(context.Context, *model.User) (*model.User, error)
 }
