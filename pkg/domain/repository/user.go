@@ -3,7 +3,7 @@ package repository
 import (
 	"context"
 
-	"github.com/mahiro72/go-api-template/pkg/domain/model"
+	"github.com/Doer-org/miyagi2023-server/pkg/domain/model"
 )
 
 type User interface {

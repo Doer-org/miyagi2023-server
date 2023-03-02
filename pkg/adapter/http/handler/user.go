@@ -4,15 +4,13 @@ import (
 	"encoding/json"
 	"fmt"
 	"net/http"
-	"strconv"
-	"time"
 
+	"github.com/Doer-org/miyagi2023-server/pkg/adapter/http/response"
+	"github.com/Doer-org/miyagi2023-server/pkg/domain/model"
+	"github.com/Doer-org/miyagi2023-server/pkg/infra/registry"
+	"github.com/Doer-org/miyagi2023-server/pkg/interactor"
+	"github.com/Doer-org/miyagi2023-server/pkg/usecase"
 	"github.com/go-chi/chi"
-	"github.com/mahiro72/go-api-template/pkg/adapter/http/response"
-	"github.com/mahiro72/go-api-template/pkg/domain/model"
-	"github.com/mahiro72/go-api-template/pkg/infra/registry"
-	"github.com/mahiro72/go-api-template/pkg/interactor"
-	"github.com/mahiro72/go-api-template/pkg/usecase"
 )
 
 type User struct {
@@ -27,15 +25,9 @@ func NewUser(r *registry.Repository) *User {
 }
 
 func (h *User) Get(w http.ResponseWriter, r *http.Request) {
-	idParamString := chi.URLParam(r, "id")
-	if idParamString == "" {
+	idParam := chi.URLParam(r, "id")
+	if idParam == "" {
 		response.BadRequestErr(w, fmt.Errorf("id param is empty"))
-		return
-	}
-
-	idParam, err := strconv.Atoi(idParamString)
-	if err != nil {
-		response.BadRequestErr(w, err)
 		return
 	}
 
@@ -66,7 +58,14 @@ func (h *User) Create(w http.ResponseWriter, r *http.Request) {
 	}
 
 	in := &usecase.UserCreateInput{
-		Name: j.Name,
+		ID:         j.ID,
+		Name:       j.Name,
+		Age:        j.Age,
+		Gender:     j.Gender,
+		Birthday:   j.Birthday,
+		Address:    j.Address,
+		ProfilIMG:  j.ProfilIMG,
+		Prefecture: j.Prefecture,
 	}
 
 	out, err := h.usecase.Create(r.Context(), in)
@@ -80,33 +79,64 @@ func (h *User) Create(w http.ResponseWriter, r *http.Request) {
 }
 
 type userCreateRequest struct {
-	Name string `json:"name"`
+	ID         string `json:"id"`
+	Name       string `json:"name"`
+	Age        uint   `json:"age"`
+	Gender     string `json:"gender"`
+	Birthday   string `json:"birthday"`
+	Address    string `json:"address"`
+	ProfilIMG  string `json:"profile_img"`
+	Prefecture string `json:"prefecture"`
 }
 
 type userCreateResponse struct {
-	ID        int       `json:"id"`
-	Name      string    `json:"name"`
-	CreatedAt time.Time `json:"created_at"`
+	ID         string `json:"id"`
+	Name       string `json:"name"`
+	Age        uint   `json:"age"`
+	Gender     string `json:"gender"`
+	Birthday   string `json:"birthday"`
+	Address    string `json:"address"`
+	ProfilIMG  string `json:"profile_img"`
+	Prefecture string `json:"prefecture"`
+	CreatedAt  string `json:"created_at"`
 }
 
 func newUserCreateResponse(user *model.User) *userCreateResponse {
 	return &userCreateResponse{
-		ID:        user.ID,
-		Name:      user.Name,
-		CreatedAt: user.CreatedAt,
+		ID:         user.ID,
+		Name:       user.Name,
+		Age:        user.Age,
+		Gender:     user.Gender.String(),
+		Birthday:   user.Birthday.String(),
+		Address:    user.Address,
+		ProfilIMG:  user.ProfilIMG,
+		Prefecture: user.Prefecture.String(),
+		CreatedAt:  user.CreatedAt.String(),
 	}
 }
 
 type userGetResponse struct {
-	ID        int       `json:"id"`
-	Name      string    `json:"name"`
-	CreatedAt time.Time `json:"created_at"`
+	ID         string `json:"id"`
+	Name       string `json:"name"`
+	Age        uint   `json:"age"`
+	Gender     string `json:"gender"`
+	Birthday   string `json:"birthday"`
+	Address    string `json:"address"`
+	ProfilIMG  string `json:"profile_img"`
+	Prefecture string `json:"prefecture"`
+	CreatedAt  string `json:"created_at"`
 }
 
 func newUserGetResponse(user *model.User) *userGetResponse {
 	return &userGetResponse{
-		ID:        user.ID,
-		Name:      user.Name,
-		CreatedAt: user.CreatedAt,
+		ID:         user.ID,
+		Name:       user.Name,
+		Age:        user.Age,
+		Gender:     user.Gender.String(),
+		Birthday:   user.Birthday.String(),
+		Address:    user.Address,
+		ProfilIMG:  user.ProfilIMG,
+		Prefecture: user.Prefecture.String(),
+		CreatedAt:  user.CreatedAt.String(),
 	}
 }

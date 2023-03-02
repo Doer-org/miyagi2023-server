@@ -6,7 +6,7 @@ import (
 	"log"
 	"time"
 
-	"github.com/mahiro72/go-api-template/pkg/env"
+	"github.com/Doer-org/miyagi2023-server/pkg/env"
 )
 
 func Init() (*sqlx.DB, error) {

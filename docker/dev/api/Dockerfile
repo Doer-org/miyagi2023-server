@@ -1,6 +1,6 @@
 FROM golang:1.19 AS dev
 
-WORKDIR /go/src/github.com/mahiro72/go-api-template
+WORKDIR /go/src/github.com/Doer-org/miyagi2023-server
 
 COPY go.mod ./
 COPY go.sum ./

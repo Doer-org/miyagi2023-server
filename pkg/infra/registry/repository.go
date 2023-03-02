@@ -3,8 +3,8 @@ package registry
 import (
 	"github.com/jmoiron/sqlx"
 
-	"github.com/mahiro72/go-api-template/pkg/infra/mysql"
-	"github.com/mahiro72/go-api-template/pkg/infra/persistence"
+	"github.com/Doer-org/miyagi2023-server/pkg/infra/mysql"
+	"github.com/Doer-org/miyagi2023-server/pkg/infra/persistence"
 )
 
 type Repository struct {
