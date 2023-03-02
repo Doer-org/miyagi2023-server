@@ -21,7 +21,7 @@ func (d *User) Get(ctx context.Context, id int) (*model.User, error) {
 }
 
 func (d *User) Create(ctx context.Context, user *model.User) (*model.User, error) {
-	return nil,nil
+	return nil, nil
 }
 
 func (d *User) get(ctx context.Context, id int) (*model.User, error) {

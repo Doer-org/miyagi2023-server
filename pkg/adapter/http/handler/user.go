@@ -58,13 +58,13 @@ func (h *User) Create(w http.ResponseWriter, r *http.Request) {
 	}
 
 	in := &usecase.UserCreateInput{
-		ID: j.ID,
-		Name: j.Name,
-		Age: j.Age,
-		Gender: j.Gender,
-		Birthday: j.Birthday,
-		Address: j.Address,
-		ProfilIMG: j.ProfilIMG,
+		ID:         j.ID,
+		Name:       j.Name,
+		Age:        j.Age,
+		Gender:     j.Gender,
+		Birthday:   j.Birthday,
+		Address:    j.Address,
+		ProfilIMG:  j.ProfilIMG,
 		Prefecture: j.Prefecture,
 	}
 
@@ -79,64 +79,64 @@ func (h *User) Create(w http.ResponseWriter, r *http.Request) {
 }
 
 type userCreateRequest struct {
-	ID        string `json:"id"`
-	Name      string `json:"name"`
-	Age uint `json:"age"`
-	Gender string `json:"gender"`
-	Birthday string `json:"birthday"`
-	Address string `json:"address"`
-	ProfilIMG string `json:"profile_img"`
+	ID         string `json:"id"`
+	Name       string `json:"name"`
+	Age        uint   `json:"age"`
+	Gender     string `json:"gender"`
+	Birthday   string `json:"birthday"`
+	Address    string `json:"address"`
+	ProfilIMG  string `json:"profile_img"`
 	Prefecture string `json:"prefecture"`
 }
 
 type userCreateResponse struct {
-	ID        string `json:"id"`
-	Name      string `json:"name"`
-	Age uint `json:"age"`
-	Gender string `json:"gender"`
-	Birthday string `json:"birthday"`
-	Address string `json:"address"`
-	ProfilIMG string `json:"profile_img"`
+	ID         string `json:"id"`
+	Name       string `json:"name"`
+	Age        uint   `json:"age"`
+	Gender     string `json:"gender"`
+	Birthday   string `json:"birthday"`
+	Address    string `json:"address"`
+	ProfilIMG  string `json:"profile_img"`
 	Prefecture string `json:"prefecture"`
-	CreatedAt string `json:"created_at"`
+	CreatedAt  string `json:"created_at"`
 }
 
 func newUserCreateResponse(user *model.User) *userCreateResponse {
 	return &userCreateResponse{
-		ID: user.ID,
-		Name: user.Name,
-		Age: user.Age,
-		Gender: user.Gender.String(),
-		Birthday : user.Birthday.String(),
-		Address: user.Address,
-		ProfilIMG: user.ProfilIMG,
+		ID:         user.ID,
+		Name:       user.Name,
+		Age:        user.Age,
+		Gender:     user.Gender.String(),
+		Birthday:   user.Birthday.String(),
+		Address:    user.Address,
+		ProfilIMG:  user.ProfilIMG,
 		Prefecture: user.Prefecture.String(),
-		CreatedAt : user.CreatedAt.String(),
+		CreatedAt:  user.CreatedAt.String(),
 	}
 }
 
 type userGetResponse struct {
-	ID        string `json:"id"`
-	Name      string `json:"name"`
-	Age uint `json:"age"`
-	Gender string `json:"gender"`
-	Birthday string `json:"birthday"`
-	Address string `json:"address"`
-	ProfilIMG string `json:"profile_img"`
+	ID         string `json:"id"`
+	Name       string `json:"name"`
+	Age        uint   `json:"age"`
+	Gender     string `json:"gender"`
+	Birthday   string `json:"birthday"`
+	Address    string `json:"address"`
+	ProfilIMG  string `json:"profile_img"`
 	Prefecture string `json:"prefecture"`
-	CreatedAt string `json:"created_at"`
+	CreatedAt  string `json:"created_at"`
 }
 
 func newUserGetResponse(user *model.User) *userGetResponse {
 	return &userGetResponse{
-		ID: user.ID,
-		Name: user.Name,
-		Age: user.Age,
-		Gender: user.Gender.String(),
-		Birthday : user.Birthday.String(),
-		Address: user.Address,
-		ProfilIMG: user.ProfilIMG,
+		ID:         user.ID,
+		Name:       user.Name,
+		Age:        user.Age,
+		Gender:     user.Gender.String(),
+		Birthday:   user.Birthday.String(),
+		Address:    user.Address,
+		ProfilIMG:  user.ProfilIMG,
 		Prefecture: user.Prefecture.String(),
-		CreatedAt : user.CreatedAt.String(),
+		CreatedAt:  user.CreatedAt.String(),
 	}
 }
