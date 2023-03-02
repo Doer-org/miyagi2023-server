@@ -20,6 +20,8 @@ func New(repository *registry.Repository) http.Handler {
 	spotHandler := handler.NewSpot(repository)
 	stampCardHandler := handler.NewStampCard(repository)
 	stampLogHandler := handler.NewStampLog(repository)
+	couponHandler := handler.NewCoupon(repository)
+	couponStatusHandler := handler.NewCouponStatus(repository)
 
 	r.Route("/users", func(r chi.Router) {
 		r.Get("/{id}", userHandler.Get)
@@ -41,6 +43,20 @@ func New(repository *registry.Repository) http.Handler {
 	r.Route("/stamp_logs", func(r chi.Router) {
 		r.Post("/", stampLogHandler.Create)
 		r.Get("/list", stampLogHandler.List)
+	})
+
+	r.Route("/coupons", func(r chi.Router) {
+		r.Get("/{id}", couponHandler.Get)
+		r.Post("/", couponHandler.Create)
+		r.Get("/list", couponHandler.List)
+	})
+
+	r.Route("/coupon_statuses", func(r chi.Router) {
+		r.Get("/{id}", couponStatusHandler.Get)
+		r.Post("/", couponStatusHandler.Create)
+		// MEMO: user_idをpathにいれてもいいのか
+		r.Put("/{id}/users/{user_id}/use", couponStatusHandler.Use)
+		r.Get("/list/users/{user_id}", couponStatusHandler.ListByUserID)
 	})
 
 	return r

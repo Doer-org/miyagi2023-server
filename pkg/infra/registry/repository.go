@@ -34,3 +34,11 @@ func (r *Repository) NewStampCard() *persistence.StampCard {
 func (r *Repository) NewStampLog() *persistence.StampLog {
 	return persistence.NewStampLog(r.db)
 }
+
+func (r *Repository) NewCoupon() *persistence.Coupon {
+	return persistence.NewCoupon(r.db)
+}
+
+func (r *Repository) NewCouponStatus() *persistence.CouponStatus {
+	return persistence.NewCouponStatus(r.db)
+}

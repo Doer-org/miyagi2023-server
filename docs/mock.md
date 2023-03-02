@@ -497,3 +497,338 @@ response
 ```
 
 <br>
+
+## coupon API
+
+#### クーポン取得
+
+```bash
+curl --location --request GET 'localhost:8080/coupons/1'
+```
+
+response
+```json
+{
+    "id": "e91ec300-be69-497c-ab6e-14ca2549fd3b",
+    "name": "hoge mock",
+    "expiration_date": 100,
+    "discount_rate": 10,
+    "created_at": "2023-03-02 22:13:27.341234965 +0000 UTC m=+0.019154584",
+    "spot": {
+        "id": "49cd0066-6373-4abd-b778-ffd3dbb13a80",
+        "name": "hoge mock",
+        "detail": "hogehoge",
+        "like": 23,
+        "created_at": "2023-03-02 22:13:27.34123409 +0000 UTC m=+0.019153709"
+    }
+}
+```
+
+<br>
+
+#### クーポン登録
+
+```bash
+curl --location --request POST 'localhost:8080/coupons' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "name":"hoge"
+}'
+```
+
+```json
+{
+    "id": "e91ec300-be69-497c-ab6e-14ca2549fd3b",
+    "name": "hoge mock",
+    "expiration_date": 100,
+    "discount_rate": 10,
+    "created_at": "2023-03-02 22:13:27.341234965 +0000 UTC m=+0.019154584",
+    "spot": {
+        "id": "49cd0066-6373-4abd-b778-ffd3dbb13a80",
+        "name": "hoge mock",
+        "detail": "hogehoge",
+        "like": 23,
+        "created_at": "2023-03-02 22:13:27.34123409 +0000 UTC m=+0.019153709"
+    }
+}
+```
+
+#### クーポン一覧取得
+
+
+```bash
+curl --location --request GET 'localhost:8080/coupons/list'
+```
+
+response
+```json
+{
+    "coupons": [
+        {
+            "id": "d5ee4cc5-b51c-406c-a49e-0cb313ef5ef8",
+            "name": "hoge1 mock",
+            "expiration_date": 100,
+            "discount_rate": 10,
+            "created_at": "2023-03-02 22:13:27.341235757 +0000 UTC m=+0.019155376",
+            "spot": {
+                "id": "49cd0066-6373-4abd-b778-ffd3dbb13a80",
+                "name": "hoge mock",
+                "detail": "hogehoge",
+                "like": 23,
+                "created_at": "2023-03-02 22:13:27.34123409 +0000 UTC m=+0.019153709"
+            }
+        },
+        {
+            "id": "643f5511-219d-4240-923e-161a600a1ee1",
+            "name": "hoge2 mock",
+            "expiration_date": 200,
+            "discount_rate": 20,
+            "created_at": "2023-03-02 22:13:27.341236507 +0000 UTC m=+0.019156126",
+            "spot": {
+                "id": "49cd0066-6373-4abd-b778-ffd3dbb13a80",
+                "name": "hoge mock",
+                "detail": "hogehoge",
+                "like": 23,
+                "created_at": "2023-03-02 22:13:27.34123409 +0000 UTC m=+0.019153709"
+            }
+        },
+        {
+            "id": "98233980-bd65-4ea2-893d-424fdd44a180",
+            "name": "hoge3 mock",
+            "expiration_date": 300,
+            "discount_rate": 30,
+            "created_at": "2023-03-02 22:13:27.341237215 +0000 UTC m=+0.019156792",
+            "spot": {
+                "id": "49cd0066-6373-4abd-b778-ffd3dbb13a80",
+                "name": "hoge mock",
+                "detail": "hogehoge",
+                "like": 23,
+                "created_at": "2023-03-02 22:13:27.34123409 +0000 UTC m=+0.019153709"
+            }
+        }
+    ]
+}
+```
+
+<br>
+
+## coupon status API
+
+#### クーポンのステータスを取得
+
+```bash
+curl --location --request GET 'localhost:8080/coupon_statuses/1'
+```
+
+response
+```json
+{
+    "id": "ad0a854d-0153-434f-b5a1-ac2f3e0db3e8",
+    "used_flg": false,
+    "created_at": "2023-03-02 22:17:43.782622501 +0000 UTC m=+0.000896417",
+    "updated_at": "2023-03-02 22:17:43.782622584 +0000 UTC m=+0.000896459",
+    "coupon": {
+        "id": "a02008e9-7224-4126-a50b-30daadd29c41",
+        "name": "hoge mock",
+        "expiration_date": 100,
+        "discount_rate": 10,
+        "created_at": "2023-03-02 22:17:43.782616334 +0000 UTC m=+0.000890251",
+        "spot": {
+            "id": "07658978-8d0e-40c7-b78a-08f4cefc2c5a",
+            "name": "hoge mock",
+            "detail": "hogehoge",
+            "like": 23,
+            "created_at": "2023-03-02 22:17:43.782615584 +0000 UTC m=+0.000889459"
+        }
+    },
+    "user": {
+        "id": "0000",
+        "name": "mahiro mock",
+        "age": 22,
+        "gender": "MEN",
+        "birthday": "2000-04-29 00:00:00 +0000 UTC",
+        "address": "hoge",
+        "profile_img": "http://example.com",
+        "prefecture": "TOYAMA",
+        "created_at": "2023-03-02 22:17:43.782621959 +0000 UTC m=+0.000895834"
+    }
+}
+```
+
+<br>
+
+#### クーポンのステータスを登録する
+
+```bash
+curl --location --request POST 'localhost:8080/coupon_statuses' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "name":"hoge"
+}'
+```
+
+response
+```json
+{
+    "id": "3867b44b-c61d-4a17-859e-5703fd195901",
+    "used_flg": false,
+    "created_at": "2023-03-02 22:27:44.090949584 +0000 UTC m=+0.023213085",
+    "updated_at": "2023-03-02 22:27:44.090949667 +0000 UTC m=+0.023213126",
+    "coupon": {
+        "id": "1c9bebab-e480-41cf-825b-c4e2ead35520",
+        "name": "hoge mock",
+        "expiration_date": 100,
+        "discount_rate": 10,
+        "created_at": "2023-03-02 22:27:44.090941834 +0000 UTC m=+0.023205335",
+        "spot": {
+            "id": "f5d22baa-2745-4ffd-a3bf-22283c5d370b",
+            "name": "hoge mock",
+            "detail": "hogehoge",
+            "like": 23,
+            "created_at": "2023-03-02 22:27:44.090940959 +0000 UTC m=+0.023204460"
+        }
+    },
+    "user": {
+        "id": "0000",
+        "name": "mahiro mock",
+        "age": 22,
+        "gender": "MEN",
+        "birthday": "2000-04-29 00:00:00 +0000 UTC",
+        "address": "hoge",
+        "profile_img": "http://example.com",
+        "prefecture": "TOYAMA",
+        "created_at": "2023-03-02 22:27:44.090949084 +0000 UTC m=+0.023212543"
+    }
+}
+```
+
+<br>
+
+
+
+#### 指定したクーポンのステータスを使用済みに更新する
+
+以下の場合、
+クーポンステータスのidが1でuserのidが1のクーポンのステータスが更新される
+
+```bash
+curl --location --request PUT 'localhost:8080/coupon_statuses/1/users/1/use'
+```
+
+response
+```json
+{
+    "id": "21ed194e-cf48-4849-bbd1-a9a5ce84ff3f",
+    "used_flg": false,
+    "created_at": "2023-03-02 22:33:53.283142213 +0000 UTC m=+0.012966918",
+    "updated_at": "2023-03-02 22:33:53.283142297 +0000 UTC m=+0.012966960",
+    "coupon": {
+        "id": "dc5cfff6-3fa3-41c2-9c2e-95cdc43211c1",
+        "name": "hoge mock",
+        "expiration_date": 100,
+        "discount_rate": 10,
+        "created_at": "2023-03-02 22:33:53.283134422 +0000 UTC m=+0.012959085",
+        "spot": {
+            "id": "2e74b170-1d05-4e9c-8776-69ee60a39260",
+            "name": "hoge mock",
+            "detail": "hogehoge",
+            "like": 23,
+            "created_at": "2023-03-02 22:33:53.283133547 +0000 UTC m=+0.012958251"
+        }
+    },
+    "user": {
+        "id": "0000",
+        "name": "mahiro mock",
+        "age": 22,
+        "gender": "MEN",
+        "birthday": "2000-04-29 00:00:00 +0000 UTC",
+        "address": "hoge",
+        "profile_img": "http://example.com",
+        "prefecture": "TOYAMA",
+        "created_at": "2023-03-02 22:33:53.28314163 +0000 UTC m=+0.012966335"
+    }
+}
+```
+
+
+<br>
+
+#### 特定のユーザーのクーポンのステータスの一覧を取得
+
+```bash
+curl --location --request GET 'localhost:8080/coupon_statuses/list/users/1'
+```
+
+(memo: userの情報が何度も入って冗長なので対応したい)
+
+response
+```json
+{
+    "coupon_statuses": [
+        {
+            "id": "e6ae4c65-1f6c-4bab-a57b-4712b9042b02",
+            "used_flg": false,
+            "created_at": "2023-03-02 22:20:29.118659175 +0000 UTC m=+0.021894085",
+            "updated_at": "2023-03-02 22:20:29.118659216 +0000 UTC m=+0.021894168",
+            "coupon": {
+                "id": "0aefb3f1-c5eb-4fa6-aff7-81af3ed42c57",
+                "name": "hoge mock",
+                "expiration_date": 100,
+                "discount_rate": 10,
+                "created_at": "2023-03-02 22:20:29.118652133 +0000 UTC m=+0.021887043",
+                "spot": {
+                    "id": "a5cbfbf6-d2e2-4bad-b299-6959a851928d",
+                    "name": "hoge mock",
+                    "detail": "hogehoge",
+                    "like": 23,
+                    "created_at": "2023-03-02 22:20:29.118651466 +0000 UTC m=+0.021886418"
+                }
+            },
+            "user": {
+                "id": "0000",
+                "name": "mahiro mock",
+                "age": 22,
+                "gender": "MEN",
+                "birthday": "2000-04-29 00:00:00 +0000 UTC",
+                "address": "hoge",
+                "profile_img": "http://example.com",
+                "prefecture": "TOYAMA",
+                "created_at": "2023-03-02 22:20:29.11865805 +0000 UTC m=+0.021892960"
+            }
+        },
+        {
+            "id": "881a2816-bd49-4c21-bf37-264f7cfd046c",
+            "used_flg": true,
+            "created_at": "2023-03-02 22:20:29.118659758 +0000 UTC m=+0.021894668",
+            "updated_at": "2023-03-02 22:20:29.1186598 +0000 UTC m=+0.021894710",
+            "coupon": {
+                "id": "0aefb3f1-c5eb-4fa6-aff7-81af3ed42c57",
+                "name": "hoge mock",
+                "expiration_date": 100,
+                "discount_rate": 10,
+                "created_at": "2023-03-02 22:20:29.118652133 +0000 UTC m=+0.021887043",
+                "spot": {
+                    "id": "a5cbfbf6-d2e2-4bad-b299-6959a851928d",
+                    "name": "hoge mock",
+                    "detail": "hogehoge",
+                    "like": 23,
+                    "created_at": "2023-03-02 22:20:29.118651466 +0000 UTC m=+0.021886418"
+                }
+            },
+            "user": {
+                "id": "0000",
+                "name": "mahiro mock",
+                "age": 22,
+                "gender": "MEN",
+                "birthday": "2000-04-29 00:00:00 +0000 UTC",
+                "address": "hoge",
+                "profile_img": "http://example.com",
+                "prefecture": "TOYAMA",
+                "created_at": "2023-03-02 22:20:29.11865805 +0000 UTC m=+0.021892960"
+            }
+        }
+    ]
+}
+```
+
+<br>
