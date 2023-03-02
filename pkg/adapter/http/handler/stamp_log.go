@@ -63,7 +63,7 @@ func (h *StampLog) List(w http.ResponseWriter, r *http.Request) {
 
 type stampLogCreateRequest struct {
 	SpotID      string `json:"spot_id"`
-	UserID      string `json:"user"_id`
+	UserID      string `json:"user_id"`
 	StampCardID string `json:"stamp_card_id"` //必須ではない
 }
 
