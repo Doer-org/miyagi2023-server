@@ -88,12 +88,16 @@ type spotDefaultResponse struct {
 	Name      string `json:"name"`
 	Detail    string `json:"detail"`
 	Like      uint   `json:"like"`
+	ImgURL    string `json:"img_url"`
+	Address   string `json:"address"`
 	CreatedAt string `json:"created_at"`
 }
 
 type spotCreateRequest struct {
-	Name   string `json:"name"`
-	Detail string `json:"detail"`
+	Name    string `json:"name"`
+	Detail  string `json:"detail"`
+	ImgURL  string `json:"img_url"`
+	Address string `json:"address"`
 }
 
 type spotListResponse struct {
@@ -106,6 +110,8 @@ func newSpotDefaultResponse(spot *model.Spot) *spotDefaultResponse {
 		Name:      spot.Name,
 		Detail:    spot.Detail,
 		Like:      spot.Like,
+		ImgURL:    spot.ImgURL,
+		Address:   spot.Address,
 		CreatedAt: spot.CreatedAt.String(),
 	}
 }

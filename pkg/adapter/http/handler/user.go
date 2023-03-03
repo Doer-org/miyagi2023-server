@@ -66,7 +66,7 @@ func (h *User) Create(w http.ResponseWriter, r *http.Request) {
 		Gender:     j.Gender,
 		Birthday:   j.Birthday,
 		Address:    j.Address,
-		ProfilIMG:  j.ProfilIMG,
+		ProfileImg: j.ProfileImg,
 		Prefecture: j.Prefecture,
 	}
 
@@ -87,7 +87,7 @@ type userCreateRequest struct {
 	Gender     string `json:"gender"`
 	Birthday   string `json:"birthday"`
 	Address    string `json:"address"`
-	ProfilIMG  string `json:"profile_img"`
+	ProfileImg string `json:"profile_img"`
 	Prefecture string `json:"prefecture"`
 }
 
@@ -98,7 +98,7 @@ type userDefaultResponse struct {
 	Gender     string `json:"gender"`
 	Birthday   string `json:"birthday"`
 	Address    string `json:"address"`
-	ProfilIMG  string `json:"profile_img"`
+	ProfileImg string `json:"profile_img"`
 	Prefecture string `json:"prefecture"`
 	CreatedAt  string `json:"created_at"`
 }
@@ -111,7 +111,7 @@ func newUserDefaultResponse(user *model.User) *userDefaultResponse {
 		Gender:     user.Gender.String(),
 		Birthday:   user.Birthday.String(),
 		Address:    user.Address,
-		ProfilIMG:  user.ProfilIMG,
+		ProfileImg: user.ProfileImg,
 		Prefecture: user.Prefecture.String(),
 		CreatedAt:  user.CreatedAt.String(),
 	}

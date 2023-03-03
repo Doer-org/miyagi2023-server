@@ -72,6 +72,7 @@ type stampLogDefaultResponse struct {
 	Spot      *spotDefaultResponse      `json:"spot"`
 	User      *userDefaultResponse      `json:"user"`
 	StampCard *stampCardDefaultResponse `json:"stamp_card"`
+	Coupon    *couponDefaultResponse    `json:"coupon"`
 	CreatedAt string                    `json:"created_at"`
 }
 
@@ -85,6 +86,7 @@ func newStampLogDefaultResponse(stampLog *model.StampLog) *stampLogDefaultRespon
 		Spot:      newSpotDefaultResponse(stampLog.Spot),
 		User:      newUserDefaultResponse(stampLog.User),
 		StampCard: newStampCardDefaultResponse(stampLog.StampCard),
+		Coupon:    newCouponDefaultResponse(stampLog.Coupon),
 		CreatedAt: stampLog.CreatedAt.String(),
 	}
 }

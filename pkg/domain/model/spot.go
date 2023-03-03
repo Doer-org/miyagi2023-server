@@ -11,5 +11,7 @@ type Spot struct {
 	Name      string
 	Detail    string
 	Like      uint
+	ImgURL    string
+	Address   string
 	CreatedAt time.Time
 }
