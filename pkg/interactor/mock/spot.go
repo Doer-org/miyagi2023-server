@@ -88,7 +88,7 @@ var spots []*model.Spot = []*model.Spot{
 		Name:      "鹽竈神社",
 		Detail:    "鹽竈神社は、宮城県塩竈市にある神社である。志波彦神社との二社が同一境内に鎮座している。志波彦神社は式内社。鹽竈神社は式外社、陸奥国一宮。両社合わせて旧社格は国幣中社で、現在は神社本庁の別表神社。",
 		Like:      223,
-		ImgURL:    "http://example.com",
+		ImgURL:    "https://tabi-mag.jp/wp-content/uploads/MG006901.jpg",
 		Address:   "〒985-8510 宮城県塩竈市一森山１−１",
 		CreatedAt: time.Now(),
 	},
