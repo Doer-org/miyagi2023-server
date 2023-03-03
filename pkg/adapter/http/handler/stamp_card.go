@@ -17,9 +17,9 @@ type StampCard struct {
 	usecase usecase.StampCard
 }
 
-func NewStampCard(repostiroy *registry.Repository) *StampCard {
+func NewStampCard(repository *registry.Repository) *StampCard {
 	usecase := interactor.NewStampCard(
-		repostiroy.NewStampCard(),
+		repository.NewStampCard(),
 	)
 	return &StampCard{
 		usecase: usecase,

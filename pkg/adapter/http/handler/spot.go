@@ -34,7 +34,10 @@ func (h *Spot) Get(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	in := &usecase.SpotGetInput{}
+	in := &usecase.SpotGetInput{
+		ID: idParam,
+	}
+
 	out, err := h.usecase.Get(r.Context(), in)
 	if err != nil {
 		response.BadRequestErr(w, err)
@@ -58,7 +61,13 @@ func (h *Spot) Create(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	in := &usecase.SpotCreateInput{}
+	in := &usecase.SpotCreateInput{
+		Name:    j.Name,
+		Detail:  j.Detail,
+		ImgURL:  j.ImgURL,
+		Address: j.Address,
+	}
+
 	out, err := h.usecase.Create(r.Context(), in)
 	if err != nil {
 		response.BadRequestErr(w, err)
