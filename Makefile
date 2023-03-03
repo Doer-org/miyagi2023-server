@@ -26,7 +26,7 @@ log: ## docker環境のログを標示する
 
 .PHONY: go-fmt
 go-fmt: ## goのコードを整形します
-	gofmt -l -w .
+	@gofmt -l -w .
 
 .PHONY: set-up
 set-up: ## 環境の初期化を行います

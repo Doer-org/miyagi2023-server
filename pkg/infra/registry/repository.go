@@ -3,8 +3,8 @@ package registry
 import (
 	"github.com/jmoiron/sqlx"
 
-	"github.com/mahiro72/go-api-template/pkg/infra/mysql"
-	"github.com/mahiro72/go-api-template/pkg/infra/persistence"
+	"github.com/Doer-org/miyagi2023-server/pkg/infra/mysql"
+	"github.com/Doer-org/miyagi2023-server/pkg/infra/persistence"
 )
 
 type Repository struct {
@@ -21,4 +21,24 @@ func NewRepository() (*Repository, error) {
 
 func (r *Repository) NewUser() *persistence.User {
 	return persistence.NewUser(r.db)
+}
+
+func (r *Repository) NewSpot() *persistence.Spot {
+	return persistence.NewSpot(r.db)
+}
+
+func (r *Repository) NewStampCard() *persistence.StampCard {
+	return persistence.NewStampCard(r.db)
+}
+
+func (r *Repository) NewStampLog() *persistence.StampLog {
+	return persistence.NewStampLog(r.db)
+}
+
+func (r *Repository) NewCoupon() *persistence.Coupon {
+	return persistence.NewCoupon(r.db)
+}
+
+func (r *Repository) NewCouponStatus() *persistence.CouponStatus {
+	return persistence.NewCouponStatus(r.db)
 }

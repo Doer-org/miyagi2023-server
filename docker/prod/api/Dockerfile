@@ -1,7 +1,7 @@
 ## Build
 FROM golang:1.19 AS build
 
-WORKDIR /go/src/github.com/mahiro72/go-user-api
+WORKDIR /go/src/github.com/Doer-org/miyagi2023-server
 
 COPY go.mod ./
 COPY go.sum ./
@@ -10,7 +10,7 @@ RUN go mod download
 
 COPY . .
 
-RUN go build -o /server ./cmd
+RUN go build -o /server ./cmd/api
 
 ## Deploy
 FROM gcr.io/distroless/base-debian10

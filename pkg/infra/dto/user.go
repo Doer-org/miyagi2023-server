@@ -3,7 +3,7 @@ package dto
 import (
 	"time"
 
-	"github.com/mahiro72/go-api-template/pkg/domain/model"
+	"github.com/Doer-org/miyagi2023-server/pkg/domain/model"
 )
 
 type User struct {
@@ -14,16 +14,16 @@ type User struct {
 
 func NewUserDtoFromModel(m *model.User) *User {
 	return &User{
-		ID:        m.ID,
-		Name:      m.Name,
-		CreatedAt: m.CreatedAt,
+		// ID:        m.ID,
+		// Name:      m.Name,
+		// CreatedAt: m.CreatedAt,
 	}
 }
 
 func (d *User) ToModel() *model.User {
 	return &model.User{
-		ID:        d.ID,
-		Name:      d.Name,
-		CreatedAt: d.CreatedAt,
+		// ID:        d.ID,
+		// Name:      d.Name,
+		// CreatedAt: d.CreatedAt,
 	}
 }

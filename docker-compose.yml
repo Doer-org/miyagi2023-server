@@ -2,7 +2,7 @@ version: '3'
 
 services:
   api:
-    container_name: user-api
+    container_name: miyagi2023-api
     build: 
       context: .
       dockerfile: ./docker/dev/api/Dockerfile
@@ -15,9 +15,9 @@ services:
     ports:
       - 8080:8080
     volumes:
-      - .:/go/src/github.com/mahiro72/go-api-template
+      - .:/go/src/github.com/Doer-org/miyagi2023-server
   mysql:
-    container_name: user-api-mysql
+    container_name: miyagi2023-mysql
     build:
       context: .
       dockerfile: ./docker/dev/db/mysql/Dockerfile
