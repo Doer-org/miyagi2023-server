@@ -69,7 +69,7 @@ func (h *CouponStatus) Create(w http.ResponseWriter, r *http.Request) {
 	response.New(w, view)
 }
 
-// PUT /coupon_statues/{id}/users/{user_id}/use
+// PUT /coupon_statuses/{id}/users/{user_id}/use
 func (h *CouponStatus) Use(w http.ResponseWriter, r *http.Request) {
 	idParam := chi.URLParam(r, "id")
 	if idParam == "" {
