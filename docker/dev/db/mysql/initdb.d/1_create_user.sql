@@ -5,7 +5,7 @@ CREATE TABLE users (
     `gender` varchar(255) NOT NULL,
     `birthday` datetime NOT NULL,
     `address` varchar(255) NOT NULL,
-    `profile_img` varchar(255),
+    `img_url` varchar(255),
     `prefecture` varchar(255) NOT NULL,
     `created_at` datetime default current_timestamp,
     PRIMARY KEY (`id`)

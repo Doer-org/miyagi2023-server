@@ -26,7 +26,7 @@ type UserCreateInput struct {
 	Gender     string
 	Birthday   string
 	Address    string
-	ProfileImg string
+	ImgURL string
 	Prefecture string
 }
 

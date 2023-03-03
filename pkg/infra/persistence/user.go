@@ -25,8 +25,8 @@ func (d *User) Create(ctx context.Context, user *model.User) (*model.User, error
 	dto := dto.NewUserDtoFromModel(user)
 
 	query :=
-		"INSERT INTO users (`id`,`name`,`age`,`gender`,`birthday`,`address`,`profile_img`,`prefecture`)" +
-			"VALUES (:id, :name, :age, :gender, :birthday, :address, :profile_img, :prefecture)"
+		"INSERT INTO users (`id`,`name`,`age`,`gender`,`birthday`,`address`,`img_url`,`prefecture`)" +
+			"VALUES (:id, :name, :age, :gender, :birthday, :address, :img_url, :prefecture)"
 
 	_, err := d.db.NamedExecContext(ctx, query, dto)
 	if err != nil {

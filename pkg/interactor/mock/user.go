@@ -14,7 +14,7 @@ var user *model.User = &model.User{
 	Gender:     model.MEN,
 	Birthday:   time.Date(2000, 4, 29, 0, 0, 0, 0, time.Local),
 	Address:    "hoge",
-	ProfileImg: "http://example.com",
+	ImgURL: "http://example.com",
 	Prefecture: model.TOYAMA,
 	CreatedAt:  time.Now(),
 }
