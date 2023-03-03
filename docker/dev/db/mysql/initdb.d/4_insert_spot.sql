@@ -12,3 +12,4 @@ VALUES ("61de84c9-5522-7037-90a0-a03e53589d62","hoge4","hogehoge",141,"hoge.com"
 
 INSERT INTO spots (`id`,`name`,`detail`,`like`,`img_url`,`address`)
 VALUES ("5dc1db3e-e7ec-e36a-fe33-2fed9e43c132","hoge5","hogehoge",501,"hoge.com","hoge");
+

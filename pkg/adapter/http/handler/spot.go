@@ -92,6 +92,18 @@ func (h *Spot) List(w http.ResponseWriter, r *http.Request) {
 	response.New(w, view)
 }
 
+
+func (h *Spot) GetRandom(w http.ResponseWriter, r *http.Request) {
+	out, err := h.usecase.GetRandom(r.Context())
+	if err != nil {
+		response.BadRequestErr(w, err)
+		return
+	}
+
+	view := newSpotListResponse(out.Spots)
+	response.New(w, view)
+}
+
 type spotDefaultResponse struct {
 	ID        string `json:"id"`
 	Name      string `json:"name"`

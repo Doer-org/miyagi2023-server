@@ -2,6 +2,8 @@ package persistence
 
 import (
 	"context"
+	"math/rand"
+	"time"
 
 	"github.com/Doer-org/miyagi2023-server/pkg/domain/model"
 	"github.com/Doer-org/miyagi2023-server/pkg/infra/dto"
@@ -73,4 +75,44 @@ func (d *Spot) get(ctx context.Context, id uuid.UUID) (*model.Spot, error) {
 	}
 
 	return dto.ToModel()
+}
+
+func (d *Spot) GetRandom(ctx context.Context) ([]*model.Spot, error) {
+	var dtos []*dto.Spot
+
+	query := `
+		SELECT * FROM spots
+	`
+	err := d.db.SelectContext(ctx, &dtos, query)
+	if err != nil {
+		return nil, err
+	}
+
+	var resspots []*model.Spot
+	sizeart := len(dtos)
+	used := make([]int, sizeart+1, sizeart+1)
+
+	for i := 0; i <= sizeart; i++ {
+		used[i] = -1
+	}
+
+	for i := 0; i < 5; i++ {
+		for {
+			rand.Seed(time.Now().UnixNano())
+			randomNumber := rand.Intn(sizeart)
+			if used[randomNumber] == -1 {
+				used[randomNumber] = 1
+				dtospot := dtos[randomNumber]
+				resspot, err := dtospot.ToModel()
+				if err != nil {
+					return nil, err
+				}
+				resspots = append(resspots, resspot)
+				break
+			}
+		}
+	}
+
+	return resspots, nil
+
 }

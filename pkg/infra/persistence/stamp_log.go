@@ -30,10 +30,10 @@ func (d *StampLog) Create(ctx context.Context, stampLog *model.StampLog) (*model
 		return nil, err
 	}
 
-	return d.get(ctx,stampLog)
+	return d.get(ctx, stampLog)
 }
 
-func (d *StampLog) get(ctx context.Context, stampLog *model.StampLog)(*model.StampLog, error){
+func (d *StampLog) get(ctx context.Context, stampLog *model.StampLog) (*model.StampLog, error) {
 	var dtoUser dto.User
 	queryUser := `
 		SELECT * FROM users WHERE id = ? LIMIT 1
@@ -49,7 +49,7 @@ func (d *StampLog) get(ctx context.Context, stampLog *model.StampLog)(*model.Sta
 	`
 	err = d.db.GetContext(ctx, &dtoSpot, querySpot, stampLog.Spot.ID.String())
 	if err != nil {
-		return nil, err	
+		return nil, err
 	}
 
 	var dtoStampLog dto.StampLog
@@ -58,16 +58,25 @@ func (d *StampLog) get(ctx context.Context, stampLog *model.StampLog)(*model.Sta
 	`
 	err = d.db.GetContext(ctx, &dtoSpot, queryStampLog, stampLog.ID.String())
 	if err != nil {
-		return nil, err	
+		return nil, err
 	}
-	return dtoStampLog.ToModel(&dtoSpot,&dtoUser)
+	return dtoStampLog.ToModel(&dtoSpot, &dtoUser)
 }
 
 func (d *StampLog) List(context.Context, string) ([]*model.StampLog, error) {
 	return nil, nil
 }
 
-func (d *StampLog) GetVisitCnt(ctx context.Context,userID string, spotID uuid.UUID) (uint,error) {
+func (d *StampLog) GetVisitCnt(ctx context.Context, userID string, spotID uuid.UUID) (uint, error) {
 	// TODO:yadon ログを取得して訪れた回数を返す
-	return 0,nil
+	var dtos []dto.StampLog
+	query := `
+		SELECT * FROM stamp_logs WHERE user_id = ? AND spot_id = ?
+	`
+	err := d.db.SelectContext(ctx, &dtos, query, userID, spotID)
+	if err != nil {
+		return 0, err
+	}
+
+	return uint(len(dtos)), nil
 }

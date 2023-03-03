@@ -92,3 +92,14 @@ func (uc *Spot) List(ctx context.Context, in *usecase.SpotListInput) (*usecase.S
 		Spots: spots,
 	}, nil
 }
+
+func (uc *Spot) GetRandom(ctx context.Context) (*usecase.SpotListOutput, error) {
+	spots, err := uc.repository.GetRandom(ctx)
+	if err != nil {
+		return nil, err
+	}
+
+	return &usecase.SpotListOutput{
+		Spots: spots,
+	}, nil
+}

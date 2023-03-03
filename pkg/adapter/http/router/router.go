@@ -31,6 +31,7 @@ func New(repository *registry.Repository) http.Handler {
 		r.Get("/{id}", spotHandler.Get)
 		r.Post("/", spotHandler.Create)
 		r.Get("/list", spotHandler.List)
+		r.Get("/random", spotHandler.GetRandom)
 	})
 
 	r.Route("/stamp_logs", func(r chi.Router) {

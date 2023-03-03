@@ -10,6 +10,7 @@ type Spot interface {
 	Get(context.Context, *SpotGetInput) (*SpotGetOutput, error)
 	Create(context.Context, *SpotCreateInput) (*SpotCreateOutput, error)
 	List(context.Context, *SpotListInput) (*SpotListOutput, error)
+	GetRandom(context.Context) (*SpotListOutput, error)
 }
 
 type SpotGetInput struct {
