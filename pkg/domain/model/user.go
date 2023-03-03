@@ -15,7 +15,7 @@ type User struct {
 	Gender     Gender
 	Birthday   time.Time
 	Address    string
-	ProfileImg string //FIXME: img_urlで統一したい
+	ImgURL string
 	Prefecture Prefecture
 	CreatedAt  time.Time
 }

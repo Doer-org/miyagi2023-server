@@ -89,7 +89,7 @@ func (uc *User) Create(ctx context.Context, in *usecase.UserCreateInput) (*useca
 		Gender:     gender,
 		Birthday:   birthday,
 		Address:    in.Address,
-		ProfileImg: in.ProfileImg,                   //必須ではない
+		ImgURL: in.ImgURL,                   //必須ではない
 		Prefecture: model.Prefecture(in.Prefecture), //FIXME: 必須?
 	}
 

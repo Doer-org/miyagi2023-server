@@ -20,7 +20,7 @@ response
     "gender": "MEN",
     "birthday": "2000-04-29 00:00:00 +0000 UTC",
     "address": "hoge",
-    "profile_img": "http://example.com",
+    "img_url": "http://example.com",
     "prefecture": "TOYAMA",
     "created_at": "2023-03-03 03:18:21.503441044 +0000 UTC m=+0.015616293"
 }
@@ -44,7 +44,7 @@ curl --location --request POST 'http://localhost:8080/users' \
     "gender":"MEN",
     "birthday":"2000-04-29",
     "address":"hoge",
-    "profile_img":"http://example.com",
+    "img_url":"http://example.com",
     "prefecture":"TOYAMA"
 }'
 ```
@@ -58,7 +58,7 @@ response(success)
     "gender": "MEN",
     "birthday": "2000-04-29 00:00:00 +0000 UTC",
     "address": "hoge",
-    "profile_img": "http://example.com",
+    "img_url": "http://example.com",
     "prefecture": "TOYAMA",
     "created_at": "2023-03-03 03:59:30.576256839 +0000 UTC m=+0.016292584"
 }
@@ -172,192 +172,6 @@ response
 
 <br>
 
-## stamp card API
-
-#### スタンプカード取得
-
-```bash
-curl --location --request GET 'localhost:8080/stamp_cards/1'
-```
-
-response
-```json
-{
-    "id": "3421be63-9964-48bc-9c40-ef84520f2a7e",
-    "name": "hoge mock",
-    "created_at": "2023-03-03 03:59:30.576253964 +0000 UTC m=+0.016289709",
-    "spots": [
-        {
-            "id": "d5cb979f-acff-4ffa-9170-9b6ccadd9464",
-            "name": "hoge1 mock",
-            "detail": "hogehoge1",
-            "like": 123,
-            "img_url": "http://example.com",
-            "address": "hoge",
-            "created_at": "2023-03-03 03:59:30.576252298 +0000 UTC m=+0.016288042"
-        },
-        {
-            "id": "52090406-261a-4531-87b9-d1619520438f",
-            "name": "hoge2 mock",
-            "detail": "hogehoge2",
-            "like": 223,
-            "img_url": "http://example.com",
-            "address": "hoge",
-            "created_at": "2023-03-03 03:59:30.576252881 +0000 UTC m=+0.016288626"
-        },
-        {
-            "id": "be2d1c94-24cd-439c-8639-e0b9a58d21c8",
-            "name": "hoge3 mock",
-            "detail": "hogehoge3",
-            "like": 323,
-            "img_url": "http://example.com",
-            "address": "hoge",
-            "created_at": "2023-03-03 03:59:30.576253423 +0000 UTC m=+0.016289167"
-        }
-    ]
-}
-```
-
-<br>
-
-
-#### スタンプカード登録
-
-```bash
-curl --location --request POST 'localhost:8080/stamp_cards' \
---header 'Content-Type: application/json' \
---data-raw '{
-    "name":"hoge"
-}'o
-```
-
-response
-```json
-{
-    "id": "3421be63-9964-48bc-9c40-ef84520f2a7e",
-    "name": "hoge mock",
-    "created_at": "2023-03-03 03:59:30.576253964 +0000 UTC m=+0.016289709",
-    "spots": [
-        {
-            "id": "d5cb979f-acff-4ffa-9170-9b6ccadd9464",
-            "name": "hoge1 mock",
-            "detail": "hogehoge1",
-            "like": 123,
-            "img_url": "http://example.com",
-            "address": "hoge",
-            "created_at": "2023-03-03 03:59:30.576252298 +0000 UTC m=+0.016288042"
-        },
-        {
-            "id": "52090406-261a-4531-87b9-d1619520438f",
-            "name": "hoge2 mock",
-            "detail": "hogehoge2",
-            "like": 223,
-            "img_url": "http://example.com",
-            "address": "hoge",
-            "created_at": "2023-03-03 03:59:30.576252881 +0000 UTC m=+0.016288626"
-        },
-        {
-            "id": "be2d1c94-24cd-439c-8639-e0b9a58d21c8",
-            "name": "hoge3 mock",
-            "detail": "hogehoge3",
-            "like": 323,
-            "img_url": "http://example.com",
-            "address": "hoge",
-            "created_at": "2023-03-03 03:59:30.576253423 +0000 UTC m=+0.016289167"
-        }
-    ]
-}
-```
-
-<br>
-
-
-
-#### スタンプカード一覧取得
-
-```bash
-curl --location --request GET 'localhost:8080/stamp_cards/list'
-```
-
-response
-```json
-{
-    "stamp_cards": [
-        {
-            "id": "2faf221b-a12e-4b9a-9aba-88ec57d0f654",
-            "name": "hoge1 mock",
-            "created_at": "2023-03-03 03:59:30.576255464 +0000 UTC m=+0.016291209",
-            "spots": [
-                {
-                    "id": "d5cb979f-acff-4ffa-9170-9b6ccadd9464",
-                    "name": "hoge1 mock",
-                    "detail": "hogehoge1",
-                    "like": 123,
-                    "img_url": "http://example.com",
-                    "address": "hoge",
-                    "created_at": "2023-03-03 03:59:30.576252298 +0000 UTC m=+0.016288042"
-                },
-                {
-                    "id": "52090406-261a-4531-87b9-d1619520438f",
-                    "name": "hoge2 mock",
-                    "detail": "hogehoge2",
-                    "like": 223,
-                    "img_url": "http://example.com",
-                    "address": "hoge",
-                    "created_at": "2023-03-03 03:59:30.576252881 +0000 UTC m=+0.016288626"
-                },
-                {
-                    "id": "be2d1c94-24cd-439c-8639-e0b9a58d21c8",
-                    "name": "hoge3 mock",
-                    "detail": "hogehoge3",
-                    "like": 323,
-                    "img_url": "http://example.com",
-                    "address": "hoge",
-                    "created_at": "2023-03-03 03:59:30.576253423 +0000 UTC m=+0.016289167"
-                }
-            ]
-        },
-        {
-            "id": "a1b2ca4c-25f4-4754-b22b-b3352b130d9b",
-            "name": "hoge2 mock",
-            "created_at": "2023-03-03 03:59:30.576256089 +0000 UTC m=+0.016291834",
-            "spots": [
-                {
-                    "id": "d5cb979f-acff-4ffa-9170-9b6ccadd9464",
-                    "name": "hoge1 mock",
-                    "detail": "hogehoge1",
-                    "like": 123,
-                    "img_url": "http://example.com",
-                    "address": "hoge",
-                    "created_at": "2023-03-03 03:59:30.576252298 +0000 UTC m=+0.016288042"
-                },
-                {
-                    "id": "52090406-261a-4531-87b9-d1619520438f",
-                    "name": "hoge2 mock",
-                    "detail": "hogehoge2",
-                    "like": 223,
-                    "img_url": "http://example.com",
-                    "address": "hoge",
-                    "created_at": "2023-03-03 03:59:30.576252881 +0000 UTC m=+0.016288626"
-                },
-                {
-                    "id": "be2d1c94-24cd-439c-8639-e0b9a58d21c8",
-                    "name": "hoge3 mock",
-                    "detail": "hogehoge3",
-                    "like": 323,
-                    "img_url": "http://example.com",
-                    "address": "hoge",
-                    "created_at": "2023-03-03 03:59:30.576253423 +0000 UTC m=+0.016289167"
-                }
-            ]
-        }
-    ]
-}
-```
-
-
-<br>
-
 ## stamp log API
 
 #### スタンプログ保存
@@ -367,8 +181,7 @@ curl --location --request POST 'localhost:8080/stamp_logs' \
 --header 'Content-Type: application/json' \
 --data-raw '{
     "spot_id":"hoge",
-    "user_id":"hoge",
-    "stamp_card_id":"hoge"
+    "user_id":"hoge"
 }
 '
 ```
@@ -393,43 +206,9 @@ response
         "gender": "MEN",
         "birthday": "2000-04-29 00:00:00 +0000 UTC",
         "address": "hoge",
-        "profile_img": "http://example.com",
+        "img_url": "http://example.com",
         "prefecture": "TOYAMA",
         "created_at": "2023-03-03 03:59:30.576256839 +0000 UTC m=+0.016292584"
-    },
-    "stamp_card": {
-        "id": "3421be63-9964-48bc-9c40-ef84520f2a7e",
-        "name": "hoge mock",
-        "created_at": "2023-03-03 03:59:30.576253964 +0000 UTC m=+0.016289709",
-        "spots": [
-            {
-                "id": "d5cb979f-acff-4ffa-9170-9b6ccadd9464",
-                "name": "hoge1 mock",
-                "detail": "hogehoge1",
-                "like": 123,
-                "img_url": "http://example.com",
-                "address": "hoge",
-                "created_at": "2023-03-03 03:59:30.576252298 +0000 UTC m=+0.016288042"
-            },
-            {
-                "id": "52090406-261a-4531-87b9-d1619520438f",
-                "name": "hoge2 mock",
-                "detail": "hogehoge2",
-                "like": 223,
-                "img_url": "http://example.com",
-                "address": "hoge",
-                "created_at": "2023-03-03 03:59:30.576252881 +0000 UTC m=+0.016288626"
-            },
-            {
-                "id": "be2d1c94-24cd-439c-8639-e0b9a58d21c8",
-                "name": "hoge3 mock",
-                "detail": "hogehoge3",
-                "like": 323,
-                "img_url": "http://example.com",
-                "address": "hoge",
-                "created_at": "2023-03-03 03:59:30.576253423 +0000 UTC m=+0.016289167"
-            }
-        ]
     },
     "coupon": {
         "id": "d5fec20c-fccf-42c1-bc16-aec8351426be",
@@ -467,7 +246,6 @@ response
             "id": "15295f26-aeea-4338-a76a-e254f6913571",
             "spot_id": "195fb4fe-9700-49ce-80a0-111b91a1e1e4",
             "user_id": "0000",
-            "stamp_card_id": "3421be63-9964-48bc-9c40-ef84520f2a7e",
             "coupon_id": "d5fec20c-fccf-42c1-bc16-aec8351426be",
             "created_at": "2023-03-03 03:59:30.576259923 +0000 UTC m=+0.016295626"
         },
@@ -475,7 +253,6 @@ response
             "id": "6db3cba9-28ba-4909-bf0e-78c09138780c",
             "spot_id": "195fb4fe-9700-49ce-80a0-111b91a1e1e4",
             "user_id": "0000",
-            "stamp_card_id": "3421be63-9964-48bc-9c40-ef84520f2a7e",
             "coupon_id": "d5fec20c-fccf-42c1-bc16-aec8351426be",
             "created_at": "2023-03-03 03:59:30.576260423 +0000 UTC m=+0.016296167"
         }
@@ -649,7 +426,7 @@ response
         "gender": "MEN",
         "birthday": "2000-04-29 00:00:00 +0000 UTC",
         "address": "hoge",
-        "profile_img": "http://example.com",
+        "img_url": "http://example.com",
         "prefecture": "TOYAMA",
         "created_at": "2023-03-03 03:59:30.576256839 +0000 UTC m=+0.016292584"
     }
@@ -700,7 +477,7 @@ response
         "gender": "MEN",
         "birthday": "2000-04-29 00:00:00 +0000 UTC",
         "address": "hoge",
-        "profile_img": "http://example.com",
+        "img_url": "http://example.com",
         "prefecture": "TOYAMA",
         "created_at": "2023-03-03 03:59:30.576256839 +0000 UTC m=+0.016292584"
     }
