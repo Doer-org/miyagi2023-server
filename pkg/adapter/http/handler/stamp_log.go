@@ -62,24 +62,24 @@ func (h *StampLog) List(w http.ResponseWriter, r *http.Request) {
 }
 
 type stampLogCreateRequest struct {
-	SpotID      string `json:"spot_id"`
-	UserID      string `json:"user_id"`
+	SpotID string `json:"spot_id"`
+	UserID string `json:"user_id"`
 }
 
 type stampLogDefaultResponse struct {
-	ID        string                    `json:"id"`
-	Spot      *spotDefaultResponse      `json:"spot"`
-	User      *userDefaultResponse      `json:"user"`
-	Coupon    *couponDefaultResponse    `json:"coupon"`
-	CreatedAt string                    `json:"created_at"`
+	ID        string                 `json:"id"`
+	Spot      *spotDefaultResponse   `json:"spot"`
+	User      *userDefaultResponse   `json:"user"`
+	Coupon    *couponDefaultResponse `json:"coupon"`
+	CreatedAt string                 `json:"created_at"`
 }
 
 type _stampLogListResponse struct {
-	ID          string `json:"id"`
-	SpotID      string `json:"spot_id"`
-	UserID      string `json:"user_id"`
-	CouponID    string `json:"coupon_id"`
-	CreatedAt   string `json:"created_at"`
+	ID        string `json:"id"`
+	SpotID    string `json:"spot_id"`
+	UserID    string `json:"user_id"`
+	CouponID  string `json:"coupon_id"`
+	CreatedAt string `json:"created_at"`
 }
 
 type stampLogListResponse struct {
@@ -108,11 +108,11 @@ func _newStampLogListResponse(stampLogs []*model.StampLog) []*_stampLogListRespo
 	var r []*_stampLogListResponse
 	for _, stampLog := range stampLogs {
 		r = append(r, &_stampLogListResponse{
-			ID:          stampLog.ID.String(),
-			SpotID:      stampLog.Spot.ID.String(),
-			UserID:      stampLog.User.ID.String(),
-			CouponID:    stampLog.Coupon.ID.String(),
-			CreatedAt:   stampLog.CreatedAt.String(),
+			ID:        stampLog.ID.String(),
+			SpotID:    stampLog.Spot.ID.String(),
+			UserID:    stampLog.User.ID.String(),
+			CouponID:  stampLog.Coupon.ID.String(),
+			CreatedAt: stampLog.CreatedAt.String(),
 		})
 	}
 	return r

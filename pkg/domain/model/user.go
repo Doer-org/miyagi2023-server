@@ -15,7 +15,7 @@ type User struct {
 	Gender     Gender
 	Birthday   time.Time
 	Address    string
-	ImgURL string
+	ImgURL     string
 	Prefecture Prefecture
 	CreatedAt  time.Time
 }
