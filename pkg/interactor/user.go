@@ -39,56 +39,56 @@ func (uc *User) Create(ctx context.Context, in *usecase.UserCreateInput) (*useca
 	}
 
 	// TODO: エラーハンドリング
-	found,_ := uc.repository.Get(ctx,in.ID)
+	found, _ := uc.repository.Get(ctx, in.ID)
 	if found != nil {
-		return nil,fmt.Errorf("user id is exists")
+		return nil, fmt.Errorf("user id is exists")
 	}
 
 	// バリデーション
 	if in.Name == "" {
-		return nil,fmt.Errorf("user name is invalid")
+		return nil, fmt.Errorf("user name is invalid")
 	}
 
 	if in.Age == 0 {
-		return nil,fmt.Errorf("user age is invalid")
+		return nil, fmt.Errorf("user age is invalid")
 	}
 
 	var gender model.Gender
 	switch in.Gender {
-	case string(model.MEN) :
+	case string(model.MEN):
 		gender = model.Gender(in.Gender)
 	case string(model.WOMEN):
 		gender = model.Gender(in.Gender)
 	default:
-		return nil,fmt.Errorf("user gender is invalid")
+		return nil, fmt.Errorf("user gender is invalid")
 	}
 
-	birthday,err := time.Parse("2006-01-02",in.Birthday)
+	birthday, err := time.Parse("2006-01-02", in.Birthday)
 	if err != nil {
-		return nil,err
+		return nil, err
 	}
 
 	if in.Address == "" {
-		return nil,fmt.Errorf("user address is invalid")
+		return nil, fmt.Errorf("user address is invalid")
 	}
 
 	u := &model.User{
-		ID: model.UserID(in.ID),
-		Name: in.Name,
-		Age: in.Age,
-		Gender: gender,
-		Birthday: birthday,
-		Address: in.Address,
-		ProfileImg: in.ProfileImg, //必須ではない
+		ID:         model.UserID(in.ID),
+		Name:       in.Name,
+		Age:        in.Age,
+		Gender:     gender,
+		Birthday:   birthday,
+		Address:    in.Address,
+		ProfileImg: in.ProfileImg,                   //必須ではない
 		Prefecture: model.Prefecture(in.Prefecture), //FIXME: 必須?
 	}
 
-	newUser,err := uc.repository.Create(ctx,u)
+	newUser, err := uc.repository.Create(ctx, u)
 	if err != nil {
-		return nil,err
+		return nil, err
 	}
 
 	return &usecase.UserCreateOutput{
 		User: newUser,
-	},nil
+	}, nil
 }
