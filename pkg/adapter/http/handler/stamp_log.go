@@ -16,9 +16,9 @@ type StampLog struct {
 	usecase usecase.StampLog
 }
 
-func NewStampLog(repositroy *registry.Repository) *StampLog {
+func NewStampLog(repository *registry.Repository) *StampLog {
 	usecase := interactor.NewStampLog(
-		repositroy.NewStampLog(),
+		repository.NewStampLog(),
 	)
 	return &StampLog{
 		usecase: usecase,
