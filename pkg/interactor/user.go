@@ -23,7 +23,7 @@ func (uc *User) Get(ctx context.Context, in *usecase.UserGetInput) (*usecase.Use
 		return nil, fmt.Errorf("user id is invalid")
 	}
 
-	user, err := uc.repository.Get(ctx, in.ID)
+	user, err := uc.repository.Get(ctx, model.UserID(in.ID))
 	if err != nil {
 		return nil, err
 	}
@@ -37,20 +37,27 @@ func (uc *User) Create(ctx context.Context, in *usecase.UserCreateInput) (*useca
 	if in.ID == "" {
 		return nil, fmt.Errorf("user id is invalid")
 	}
+	if len(in.ID) > 255 {
+		return nil, fmt.Errorf("user id must be 255 characters or less")
+	}
 
-	// TODO: エラーハンドリング
-	found, _ := uc.repository.Get(ctx, in.ID)
+	found, _ := uc.repository.Get(ctx, model.UserID(in.ID))
 	if found != nil {
 		return nil, fmt.Errorf("user id is exists")
 	}
 
-	// バリデーション
 	if in.Name == "" {
 		return nil, fmt.Errorf("user name is invalid")
+	}
+	if len(in.Name) > 255 {
+		return nil, fmt.Errorf("user name must be 255 characters or less")
 	}
 
 	if in.Age == 0 {
 		return nil, fmt.Errorf("user age is invalid")
+	}
+	if in.Age > 100 {
+		return nil, fmt.Errorf("user age max is 100")
 	}
 
 	var gender model.Gender
@@ -70,6 +77,9 @@ func (uc *User) Create(ctx context.Context, in *usecase.UserCreateInput) (*useca
 
 	if in.Address == "" {
 		return nil, fmt.Errorf("user address is invalid")
+	}
+	if len(in.Address) > 255 {
+		return nil, fmt.Errorf("user address must be 255 characters or less")
 	}
 
 	u := &model.User{
