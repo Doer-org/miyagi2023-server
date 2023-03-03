@@ -34,7 +34,7 @@ func (d *User) Create(ctx context.Context, user *model.User) (*model.User, error
 		return nil, err
 	}
 
-	return d.get(ctx,user.ID.String())
+	return d.get(ctx, user.ID.String())
 }
 
 func (d *User) get(ctx context.Context, id string) (*model.User, error) {
