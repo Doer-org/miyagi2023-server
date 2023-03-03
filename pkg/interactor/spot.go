@@ -6,6 +6,7 @@ import (
 
 	"github.com/Doer-org/miyagi2023-server/pkg/domain/model"
 	"github.com/Doer-org/miyagi2023-server/pkg/domain/repository"
+	"github.com/Doer-org/miyagi2023-server/pkg/interactor/mock"
 	"github.com/Doer-org/miyagi2023-server/pkg/usecase"
 	"github.com/google/uuid"
 )
@@ -83,12 +84,5 @@ func (uc *Spot) Create(ctx context.Context, in *usecase.SpotCreateInput) (*useca
 }
 
 func (uc *Spot) List(ctx context.Context, in *usecase.SpotListInput) (*usecase.SpotListOutput, error) {
-	spots, err := uc.repository.List(ctx)
-	if err != nil {
-		return nil, err
-	}
-
-	return &usecase.SpotListOutput{
-		Spots: spots,
-	}, nil
+	return mock.NewSpotListOutput(), nil
 }
