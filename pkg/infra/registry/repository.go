@@ -27,10 +27,6 @@ func (r *Repository) NewSpot() *persistence.Spot {
 	return persistence.NewSpot(r.db)
 }
 
-func (r *Repository) NewStampCard() *persistence.StampCard {
-	return persistence.NewStampCard(r.db)
-}
-
 func (r *Repository) NewStampLog() *persistence.StampLog {
 	return persistence.NewStampLog(r.db)
 }

@@ -13,6 +13,7 @@ type Spot interface {
 }
 
 type SpotGetInput struct {
+	ID string
 }
 
 type SpotGetOutput struct {
@@ -20,6 +21,10 @@ type SpotGetOutput struct {
 }
 
 type SpotCreateInput struct {
+	Name    string
+	Detail  string
+	ImgURL  string
+	Address string
 }
 
 type SpotCreateOutput struct {

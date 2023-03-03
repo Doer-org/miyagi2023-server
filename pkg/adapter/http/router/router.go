@@ -18,7 +18,6 @@ func New(repository *registry.Repository) http.Handler {
 
 	userHandler := handler.NewUser(repository)
 	spotHandler := handler.NewSpot(repository)
-	stampCardHandler := handler.NewStampCard(repository)
 	stampLogHandler := handler.NewStampLog(repository)
 	couponHandler := handler.NewCoupon(repository)
 	couponStatusHandler := handler.NewCouponStatus(repository)
@@ -32,12 +31,6 @@ func New(repository *registry.Repository) http.Handler {
 		r.Get("/{id}", spotHandler.Get)
 		r.Post("/", spotHandler.Create)
 		r.Get("/list", spotHandler.List)
-	})
-
-	r.Route("/stamp_cards", func(r chi.Router) {
-		r.Get("/{id}", stampCardHandler.Get)
-		r.Post("/", stampCardHandler.Create)
-		r.Get("/list", stampCardHandler.List)
 	})
 
 	r.Route("/stamp_logs", func(r chi.Router) {
