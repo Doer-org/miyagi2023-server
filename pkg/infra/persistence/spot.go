@@ -26,7 +26,7 @@ func (d *Spot) Create(ctx context.Context, spot *model.Spot) (*model.Spot, error
 
 	query :=
 		"INSERT INTO spots (`id`,`name`,`detail`,`like`,`img_url`,`address`)" +
-		"VALUES (:id, :name, :detail, :like, :img_url, :address)"
+			"VALUES (:id, :name, :detail, :like, :img_url, :address)"
 
 	_, err := d.db.NamedExecContext(ctx, query, dto)
 	if err != nil {
