@@ -114,9 +114,6 @@ type spotListResponse struct {
 }
 
 func newSpotDefaultResponse(spot *model.Spot) *spotDefaultResponse {
-	if spot == nil {
-		return nil
-	}
 	return &spotDefaultResponse{
 		ID:        spot.ID.String(),
 		Name:      spot.Name,

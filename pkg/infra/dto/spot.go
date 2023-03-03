@@ -18,9 +18,6 @@ type Spot struct {
 }
 
 func NewSpotDotFromModel(m *model.Spot) *Spot {
-	if m == nil {
-		return nil
-	}
 	return &Spot{
 		ID:        m.ID.String(),
 		Name:      m.Name,

@@ -30,7 +30,7 @@ func (d *Coupon) List(context.Context) ([]*model.Coupon, error) {
 	return nil, nil
 }
 
-func (d *Coupon) GetBySpotID(ctx context.Context,spotID uuid.UUID) (*model.Coupon,error) {
+func (d *Coupon) GetBySpotID(ctx context.Context, spotID uuid.UUID) (*model.Coupon, error) {
 	var dtoCoupon dto.Coupon
 
 	//FIXME: これjoinでできる

@@ -8,42 +8,42 @@ import (
 )
 
 type CouponStatus struct {
-	ID        string `db:"id"`
-	UsedFlg   bool `db:"used_flg"`
+	ID        string    `db:"id"`
+	UsedFlg   bool      `db:"used_flg"`
 	CreatedAt time.Time `db:"created_at"`
 	UpdatedAt time.Time `db:"updated_at"`
-	CouponID string  `db:"coupon_id"`
-	UserID      string `db:"user_id"`
+	CouponID  string    `db:"coupon_id"`
+	UserID    string    `db:"user_id"`
 }
 
 func NewCouponStatusDotFromModel(m *model.CouponStatus) *CouponStatus {
 	return &CouponStatus{
 		ID:        m.ID.String(),
-		UsedFlg:      m.UsedFlg,
+		UsedFlg:   m.UsedFlg,
 		CreatedAt: m.CreatedAt,
 		UpdatedAt: m.UpdatedAt,
-		CouponID: m.Coupon.ID.String(),
-		UserID: m.User.ID.String(),
+		CouponID:  m.Coupon.ID.String(),
+		UserID:    m.User.ID.String(),
 	}
 }
 
-func (d *CouponStatus) ToModel(dtoCoupon *Coupon,dtoUser *User) (*model.CouponStatus, error) {
+func (d *CouponStatus) ToModel(dtoCoupon *Coupon, dtoUser *User) (*model.CouponStatus, error) {
 	id, err := uuid.Parse(d.ID)
 	if err != nil {
 		return nil, err
 	}
 
-	coupon,err := dtoCoupon.ToModel(nil)
+	coupon, err := dtoCoupon.ToModel(nil)
 	if err != nil {
 		return nil, err
 	}
 
 	return &model.CouponStatus{
 		ID:        id,
-		UsedFlg:      d.UsedFlg,
+		UsedFlg:   d.UsedFlg,
 		CreatedAt: d.CreatedAt,
 		UpdatedAt: d.UpdatedAt,
-		Coupon: coupon,
-		User: dtoUser.ToModel(),
-	},nil
+		Coupon:    coupon,
+		User:      dtoUser.ToModel(),
+	}, nil
 }

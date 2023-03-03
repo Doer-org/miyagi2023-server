@@ -121,7 +121,6 @@ type couponStatusDefaultResponse struct {
 	CreatedAt string                 `json:"created_at"`
 	UpdatedAt string                 `json:"updated_at"`
 	Coupon    *couponDefaultResponse `json:"coupon"`
-	User      *userDefaultResponse   `json:"user"`
 }
 
 type couponStatusCreateRequest struct {
@@ -156,7 +155,6 @@ func newCouponStatusDefaultResponse(couponStatus *model.CouponStatus) *couponSta
 		CreatedAt: couponStatus.CreatedAt.String(),
 		UpdatedAt: couponStatus.UpdatedAt.String(),
 		Coupon:    newCouponDefaultResponse(couponStatus.Coupon),
-		User:      newUserDefaultResponse(couponStatus.User),
 	}
 }
 

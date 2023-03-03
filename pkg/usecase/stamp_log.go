@@ -16,9 +16,9 @@ type StampLogCreateInput struct {
 	UserID string
 }
 type StampLogCreateOutput struct {
-	StampLog *model.StampLog
+	StampLog     *model.StampLog
 	CouponStatus *model.CouponStatus
-	VisitCnt uint
+	VisitCnt     uint
 }
 
 type StampLogListInput struct {

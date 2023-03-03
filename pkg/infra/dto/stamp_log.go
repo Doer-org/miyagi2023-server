@@ -8,15 +8,15 @@ import (
 )
 
 type StampLog struct {
-	ID        string `db:"id"`
-	SpotID      string `db:"spot_id"`
-	UserID      string `db:"user_id"`
+	ID        string    `db:"id"`
+	SpotID    string    `db:"spot_id"`
+	UserID    string    `db:"user_id"`
 	CreatedAt time.Time `db:"created_at"`
 }
 
 func NewStampLogFromModel(m *model.StampLog) *StampLog {
 	return &StampLog{
-		ID: m.ID.String(),
+		ID:     m.ID.String(),
 		SpotID: m.Spot.ID.String(),
 		UserID: m.User.ID.String(),
 	}
@@ -28,14 +28,14 @@ func (d *StampLog) ToModel(dtoSpot *Spot, dtoUser *User) (*model.StampLog, error
 		return nil, err
 	}
 
-	spot,err := dtoSpot.ToModel()
+	spot, err := dtoSpot.ToModel()
 	if err != nil {
 		return nil, err
 	}
 
 	return &model.StampLog{
-		ID: id,
-		Spot:spot,
+		ID:   id,
+		Spot: spot,
 		User: dtoUser.ToModel(),
-	},nil
+	}, nil
 }

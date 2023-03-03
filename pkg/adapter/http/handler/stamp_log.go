@@ -50,7 +50,7 @@ func (h *StampLog) Create(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	view := newStampLogCreateResponse(out.StampLog,out.VisitCnt)
+	view := newStampLogCreateResponse(out.StampLog, out.CouponStatus, out.VisitCnt)
 	response.New(w, view)
 }
 
@@ -74,12 +74,12 @@ type stampLogCreateRequest struct {
 }
 
 type stampLogCreateResponse struct {
-	ID        string                 `json:"id"`
-	Spot      *spotDefaultResponse   `json:"spot"`
-	User      *userDefaultResponse   `json:"user"`
-	Coupon    *couponDefaultResponse `json:"coupon"`
-	CreatedAt string                 `json:"created_at"`
-	VisitCnt uint `json:"visit_cnt"`
+	ID           string                       `json:"id"`
+	Spot         *spotDefaultResponse         `json:"spot"`
+	User         *userDefaultResponse         `json:"user"`
+	CouponStatus *couponStatusDefaultResponse `json:"coupon_status"`
+	CreatedAt    string                       `json:"created_at"`
+	VisitCnt     uint                         `json:"visit_cnt"`
 }
 
 type _stampLogListResponse struct {
@@ -94,16 +94,16 @@ type stampLogListResponse struct {
 	StampLogs []*_stampLogListResponse `json:"stamp_logs"`
 }
 
-func newStampLogCreateResponse(stampLog *model.StampLog,visitCnt uint) *stampLogCreateResponse {
+func newStampLogCreateResponse(stampLog *model.StampLog, couponStatus *model.CouponStatus, visitCnt uint) *stampLogCreateResponse {
 	return &stampLogCreateResponse{
-		ID:        stampLog.ID.String(),
-		Spot:      newSpotDefaultResponse(stampLog.Spot),
-		User:      newUserDefaultResponse(stampLog.User),
-		CreatedAt: stampLog.CreatedAt.String(),
-		VisitCnt: visitCnt,
+		ID:           stampLog.ID.String(),
+		Spot:         newSpotDefaultResponse(stampLog.Spot),
+		User:         newUserDefaultResponse(stampLog.User),
+		CouponStatus: newCouponStatusDefaultResponse(couponStatus),
+		CreatedAt:    stampLog.CreatedAt.String(),
+		VisitCnt:     visitCnt,
 	}
 }
-
 
 func _newStampLogListResponse(stampLogs []*model.StampLog) []*_stampLogListResponse {
 	var r []*_stampLogListResponse
