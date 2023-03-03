@@ -76,8 +76,17 @@ type stampLogDefaultResponse struct {
 	CreatedAt string                    `json:"created_at"`
 }
 
+type _stampLogListResponse struct {
+	ID          string `json:"id"`
+	SpotID      string `json:"spot_id"`
+	UserID      string `json:"user_id"`
+	StampCardID string `json:"stamp_card_id"`
+	CouponID    string `json:"coupon_id"`
+	CreatedAt   string `json:"created_at"`
+}
+
 type stampLogListResponse struct {
-	StampLogs []*stampLogDefaultResponse `json:"stamp_logs"`
+	StampLogs []*_stampLogListResponse `json:"stamp_logs"`
 }
 
 func newStampLogDefaultResponse(stampLog *model.StampLog) *stampLogDefaultResponse {
@@ -99,8 +108,23 @@ func newStampLogsDefaultResponse(stampLogs []*model.StampLog) []*stampLogDefault
 	return r
 }
 
+func _newStampLogListResponse(stampLogs []*model.StampLog) []*_stampLogListResponse {
+	var r []*_stampLogListResponse
+	for _, stampLog := range stampLogs {
+		r = append(r, &_stampLogListResponse{
+			ID:          stampLog.ID.String(),
+			SpotID:      stampLog.Spot.ID.String(),
+			UserID:      stampLog.User.ID.String(),
+			StampCardID: stampLog.StampCard.ID.String(),
+			CouponID:    stampLog.Coupon.ID.String(),
+			CreatedAt:   stampLog.CreatedAt.String(),
+		})
+	}
+	return r
+}
+
 func newStampLogListResponse(stampLogs []*model.StampLog) *stampLogListResponse {
 	return &stampLogListResponse{
-		StampLogs: newStampLogsDefaultResponse(stampLogs),
+		StampLogs: _newStampLogListResponse(stampLogs),
 	}
 }
