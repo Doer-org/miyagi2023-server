@@ -227,8 +227,12 @@ response
 curl --location --request POST 'localhost:8080/stamp_cards' \
 --header 'Content-Type: application/json' \
 --data-raw '{
-    "name":"hoge"
-}'o
+    "name":"hoge",
+    "spot_ids":[
+        "hoge1",
+        "hoge2"
+    ]
+}'
 ```
 
 response
