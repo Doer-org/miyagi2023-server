@@ -11,5 +11,6 @@ type StampLog struct {
 	Spot      *Spot
 	User      *User
 	StampCard *StampCard
+	Coupon    *Coupon
 	CreatedAt time.Time
 }

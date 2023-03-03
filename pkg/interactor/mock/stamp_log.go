@@ -13,6 +13,7 @@ var stampLog *model.StampLog = &model.StampLog{
 	Spot:      spot,
 	User:      user,
 	StampCard: stampCard,
+	Coupon:    coupon,
 	CreatedAt: time.Now(),
 }
 
@@ -22,6 +23,7 @@ var stampLogs []*model.StampLog = []*model.StampLog{
 		Spot:      spot,
 		User:      user,
 		StampCard: stampCard,
+		Coupon:    coupon,
 		CreatedAt: time.Now(),
 	},
 	{
@@ -29,6 +31,7 @@ var stampLogs []*model.StampLog = []*model.StampLog{
 		Spot:      spot,
 		User:      user,
 		StampCard: stampCard,
+		Coupon:    coupon,
 		CreatedAt: time.Now(),
 	},
 }

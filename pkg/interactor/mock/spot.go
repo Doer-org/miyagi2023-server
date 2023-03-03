@@ -13,6 +13,8 @@ var spot *model.Spot = &model.Spot{
 	Name:      "hoge mock",
 	Detail:    "hogehoge",
 	Like:      23,
+	ImgURL:    "http://example.com",
+	Address:   "hoge",
 	CreatedAt: time.Now(),
 }
 
@@ -22,6 +24,8 @@ var spots []*model.Spot = []*model.Spot{
 		Name:      "hoge1 mock",
 		Detail:    "hogehoge1",
 		Like:      123,
+		ImgURL:    "http://example.com",
+		Address:   "hoge",
 		CreatedAt: time.Now(),
 	},
 	{
@@ -29,6 +33,8 @@ var spots []*model.Spot = []*model.Spot{
 		Name:      "hoge2 mock",
 		Detail:    "hogehoge2",
 		Like:      223,
+		ImgURL:    "http://example.com",
+		Address:   "hoge",
 		CreatedAt: time.Now(),
 	},
 	{
@@ -36,6 +42,8 @@ var spots []*model.Spot = []*model.Spot{
 		Name:      "hoge3 mock",
 		Detail:    "hogehoge3",
 		Like:      323,
+		ImgURL:    "http://example.com",
+		Address:   "hoge",
 		CreatedAt: time.Now(),
 	},
 }
@@ -48,13 +56,7 @@ func NewSpotGetOutput() *usecase.SpotGetOutput {
 
 func NewSpotCreateOutput() *usecase.SpotCreateOutput {
 	return &usecase.SpotCreateOutput{
-		Spot: &model.Spot{
-			ID:        uuid.New(),
-			Name:      "hoge mock",
-			Detail:    "hogehoge",
-			Like:      23,
-			CreatedAt: time.Now(),
-		},
+		Spot: spot,
 	}
 }
 
