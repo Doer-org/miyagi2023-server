@@ -14,7 +14,7 @@ var coupon_status *model.CouponStatus = &model.CouponStatus{
 	CreatedAt: time.Now(),
 	UpdatedAt: time.Now(),
 	Coupon:    coupon,
-	User:      user,
+	User:      User,
 }
 
 var coupon_statuses []*model.CouponStatus = []*model.CouponStatus{
@@ -24,7 +24,7 @@ var coupon_statuses []*model.CouponStatus = []*model.CouponStatus{
 		CreatedAt: time.Now(),
 		UpdatedAt: time.Now(),
 		Coupon:    coupon,
-		User:      user,
+		User:      User,
 	},
 	{
 		ID:        uuid.New(),
@@ -32,7 +32,7 @@ var coupon_statuses []*model.CouponStatus = []*model.CouponStatus{
 		CreatedAt: time.Now(),
 		UpdatedAt: time.Now(),
 		Coupon:    coupon,
-		User:      user,
+		User:      User,
 	},
 }
 
