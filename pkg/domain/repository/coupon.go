@@ -11,4 +11,5 @@ type Coupon interface {
 	Get(context.Context, uuid.UUID) (*model.Coupon, error)
 	Create(context.Context, uuid.UUID) (*model.Coupon, error)
 	List(context.Context) ([]*model.Coupon, error)
+	GetBySpotID(ctx context.Context,spotID uuid.UUID) (*model.Coupon,error)
 }

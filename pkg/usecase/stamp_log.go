@@ -12,9 +12,13 @@ type StampLog interface {
 }
 
 type StampLogCreateInput struct {
+	SpotID string
+	UserID string
 }
 type StampLogCreateOutput struct {
 	StampLog *model.StampLog
+	CouponStatus *model.CouponStatus
+	VisitCnt uint
 }
 
 type StampLogListInput struct {

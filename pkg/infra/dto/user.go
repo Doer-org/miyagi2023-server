@@ -13,7 +13,7 @@ type User struct {
 	Gender     string    `db:"gender"`
 	Birthday   time.Time `db:"birthday"`
 	Address    string    `db:"address"`
-	ImgURL string    `db:"img_url"`
+	ImgURL     string    `db:"img_url"`
 	Prefecture string    `db:"prefecture"`
 	CreatedAt  time.Time `db:"created_at"`
 }
@@ -26,7 +26,7 @@ func NewUserDtoFromModel(m *model.User) *User {
 		Gender:     m.Gender.String(),
 		Birthday:   m.Birthday,
 		Address:    m.Address,
-		ImgURL: m.ImgURL,
+		ImgURL:     m.ImgURL,
 		Prefecture: m.Prefecture.String(),
 		CreatedAt:  m.CreatedAt,
 	}
@@ -40,7 +40,7 @@ func (d *User) ToModel() *model.User {
 		Gender:     model.Gender(d.Gender),
 		Birthday:   d.Birthday,
 		Address:    d.Address,
-		ImgURL: d.ImgURL,
+		ImgURL:     d.ImgURL,
 		Prefecture: model.Prefecture(d.Prefecture),
 		CreatedAt:  d.CreatedAt,
 	}
