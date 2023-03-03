@@ -614,7 +614,7 @@ response
 
 ## coupon status API
 
-#### クーポンのステータスを取得
+#### 発行済みクーポンを取得
 
 ```bash
 curl --location --request GET 'localhost:8080/coupon_statuses/1'
@@ -657,7 +657,7 @@ response
 
 <br>
 
-#### クーポンのステータスを登録する
+#### クーポンを発行する
 
 ```bash
 curl --location --request POST 'localhost:8080/coupon_statuses' \
@@ -706,7 +706,7 @@ response
 
 
 
-#### 指定したクーポンのステータスを使用済みに更新する
+#### 発行されたクーポンを使用済みに更新する
 
 以下の場合、
 クーポンステータスのidが1でuserのidが1のクーポンのステータスが更新される

@@ -91,7 +91,7 @@ func (h *CouponStatus) Use(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	view := newCouponStatusDefaultResponse(out.CouponStatus)
+	view := newCouponStatusUseResponse(out.CouponStatus)
 	response.New(w, view)
 }
 
@@ -129,8 +129,24 @@ type couponStatusCreateRequest struct {
 	UserID   string `json:"user_id"` //MEMO: 本来はsessionとかからとるべき?
 }
 
+// FIXME: 名前がいまいち
+// 意図としてはUserのデータを使わず、ユーザーIDのみを返したいが
+// List(),Use()で共通して使うためそのような名前にしたかった
+type couponStatusWithUserIDResponse struct {
+	ID        string                 `json:"id"`
+	UsedFlg   bool                   `json:"used_flg"`
+	CreatedAt string                 `json:"created_at"`
+	UpdatedAt string                 `json:"updated_at"`
+	Coupon    *couponDefaultResponse `json:"coupon"`
+	User      string                 `json:"user_id"`
+}
+
 type couponStatusListByUserIDResponse struct {
-	CouponStatues []*couponStatusDefaultResponse `json:"coupon_statuses"`
+	CouponStatues []*couponStatusWithUserIDResponse `json:"coupon_statuses"`
+}
+
+type couponStatusUseResponse struct {
+	CouponStatus *couponStatusWithUserIDResponse `json:"coupon_status"`
 }
 
 func newCouponStatusDefaultResponse(couponStatus *model.CouponStatus) *couponStatusDefaultResponse {
@@ -153,7 +169,26 @@ func newCouponStatusesDefaultResponse(couponStatues []*model.CouponStatus) []*co
 }
 
 func newCouponStatusListByUserIDResponse(couponStatues []*model.CouponStatus) *couponStatusListByUserIDResponse {
-	return &couponStatusListByUserIDResponse{
-		CouponStatues: newCouponStatusesDefaultResponse(couponStatues),
+	var lst []*couponStatusWithUserIDResponse
+	for _, couponStatus := range couponStatues {
+		lst = append(lst, newCouponStatusWithUserIDResponse(couponStatus))
 	}
+	return &couponStatusListByUserIDResponse{
+		CouponStatues: lst,
+	}
+}
+
+func newCouponStatusWithUserIDResponse(couponStatus *model.CouponStatus) *couponStatusWithUserIDResponse {
+	return &couponStatusWithUserIDResponse{
+		ID:        couponStatus.ID.String(),
+		UsedFlg:   couponStatus.UsedFlg,
+		CreatedAt: couponStatus.CreatedAt.String(),
+		UpdatedAt: couponStatus.UpdatedAt.String(),
+		Coupon:    newCouponDefaultResponse(couponStatus.Coupon),
+		User:      couponStatus.User.ID.String(),
+	}
+}
+
+func newCouponStatusUseResponse(couponStatus *model.CouponStatus) *couponStatusWithUserIDResponse {
+	return newCouponStatusWithUserIDResponse(couponStatus)
 }
