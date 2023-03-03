@@ -3,6 +3,7 @@ package registry
 import (
 	"github.com/jmoiron/sqlx"
 
+	"github.com/Doer-org/miyagi2023-server/pkg/env"
 	"github.com/Doer-org/miyagi2023-server/pkg/infra/mysql"
 	"github.com/Doer-org/miyagi2023-server/pkg/infra/persistence"
 )
@@ -12,6 +13,10 @@ type Repository struct {
 }
 
 func NewRepository() (*Repository, error) {
+	if env.CONFIG.ENVIRONMENT == "mock" {
+		return &Repository{db: nil},nil
+	}
+	
 	db, err := mysql.Init()
 	if err != nil {
 		return nil, err
