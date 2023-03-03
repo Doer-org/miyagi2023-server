@@ -131,7 +131,7 @@ var spots []*model.Spot = []*model.Spot{
 	{
 		ID:        uuid.New(),
 		Name:      "回顧橋 (かいこばし)",
-		Detail:    "鳴子峡は、宮城県大崎市鳴子温泉にある峡谷。栗駒国定公園内に位置し、宮城県の名勝に指定されている。 仙台弁の発音特性から「なるごきょう」と呼ばれることもある。",
+		Detail:    "回顧橋（かいこばし）。大深沢橋の真下にある橋で、下から一気に見上げる迫力の景色を楽しむことができます",
 		Like:      750,
 		ImgURL:    "https://encrypted-tbn1.gstatic.com/licensed-image?q=tbn:ANd9GcRnE-DfmTBnB36Jje61R5WuZ5F9zBkqWo7B-F9VRBPrUKom2Ro9R6441tVtScrXn6WsUG3Mw6vzXyIJmHVOWqK0Jw",
 		Address:   "〒989-6100 宮城県大崎市鳴子温泉",
