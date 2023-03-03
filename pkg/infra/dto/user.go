@@ -7,23 +7,41 @@ import (
 )
 
 type User struct {
-	ID        int       `db:"id"`
-	Name      string    `db:"name"`
-	CreatedAt time.Time `db:"created_at"`
+	ID         string `db:"id"`
+	Name       string `db:"name"`
+	Age        uint `db:"age"`
+	Gender     string `db:"gender"`
+	Birthday   time.Time `db:"birthday"`
+	Address    string `db:"address"`
+	ProfileImg string `db:"profile_img"`
+	Prefecture string `db:"prefecture"`
+	CreatedAt  time.Time `db:"created_at"`
 }
 
 func NewUserDtoFromModel(m *model.User) *User {
 	return &User{
-		// ID:        m.ID,
-		// Name:      m.Name,
-		// CreatedAt: m.CreatedAt,
+		ID: m.ID.String(),
+		Name: m.Name,
+		Age: m.Age,
+		Gender: m.Gender.String(),
+		Birthday: m.Birthday,
+		Address: m.Address,
+		ProfileImg: m.ProfileImg,
+		Prefecture: m.Prefecture.String(),
+		CreatedAt: m.CreatedAt,
 	}
 }
 
 func (d *User) ToModel() *model.User {
 	return &model.User{
-		// ID:        d.ID,
-		// Name:      d.Name,
-		// CreatedAt: d.CreatedAt,
+		ID: model.UserID(d.ID),
+		Name: d.Name,
+		Age: d.Age,
+		Gender: model.Gender(d.Gender),
+		Birthday: d.Birthday,
+		Address: d.Address,
+		ProfileImg: d.ProfileImg,
+		Prefecture: model.Prefecture(d.Prefecture),
+		CreatedAt: d.CreatedAt,
 	}
 }
